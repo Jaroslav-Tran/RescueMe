@@ -1,6 +1,11 @@
-import React, { Component } from "react";
-import "./app.css";
-import ReactImage from "./react.png";
+import React, { Component } from 'react';
+import './app.css';
+import {
+  HashRouter, Route, Switch, Link, Redirect
+} from 'react-router-dom';
+
+import Register from './components/Registration/Registration';
+import Login from './components/Login/Login';
 
 export default class App extends Component {
   constructor(props) {
@@ -9,21 +14,20 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    fetch("/api/getUsername")
+    fetch('/api/getUsername')
       .then(res => res.json())
       .then(user => this.setState({ username: user.username }));
   }
 
   render() {
     return (
-      <div>
-        {this.state.username ? (
-          <h1>Hello {this.state.username}</h1>
-        ) : (
-          <h1>Loading.. please wait!</h1>
-        )}
-        <img src={ReactImage} alt="react" />
-      </div>
+        <HashRouter>
+            <div>
+                {window.location.pathname.includes('index.html') && <Redirect to="/" />}
+                <Route exact path="/" component={Login} />
+                <Route exact path="/register" component={Register} />
+            </div>
+        </HashRouter>
     );
   }
 }
