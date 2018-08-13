@@ -3,26 +3,30 @@ import {
   HashRouter, Route, Switch, Link, Redirect
 } from 'react-router-dom';
 import {
-  Button, Form, Grid, Header, Image, Message, Segment, Select
+  Button, Form, Grid, Header, Image, Message, Segment
 } from 'semantic-ui-react';
-import Login from '../Login/Login';
+import '../Registration/Registration';
 
-class Register extends Component {
+const url = "http://localhost:8080";
+
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
       password: '',
+      userId: '',
     };
   }
 
   onSubmit() {
     const _this = this;
-    fetch('/register', {
+    fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'same-origin',
       body: JSON.stringify({
         username: this.state.username,
         password: this.state.password,
@@ -35,7 +39,7 @@ class Register extends Component {
       .then((responseJson) => {
         console.log(responseJson);
         if (responseJson.success) {
-          _this.context.history.push('/login');
+          _this.props.history.push(`/dashboard/${responseJson.user._id}`);
         }
         return responseJson;
       })
@@ -44,32 +48,37 @@ class Register extends Component {
       });
   }
 
-
   render() {
     return (
-      <div className="register-form">
+      <div className="login-form">
         {/*
           Heads up! The styles below are necessary for the correct render of this example.
           You can do same with CSS, the main idea is that all the elements up to the `Grid`
           below must have a height of 100%.
-          */}
+        */}
         <style>
           {`
-            body > div,
-            body > div > div,
-            body > div > div > div.register-form {
-              height: 100%;
-            }
-            `}
+          body > div,
+          body > div > div,
+          body > div > div > div.login-form {
+            height: 100%;
+          }
+        `}
         </style>
         <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="red" textAlign="center">
-                            New User
+            <Header as="h2" color="purple" textAlign="center">
+                            Log In
             </Header>
             <Form size="large">
               <Segment stacked>
-                <Form.Input fluid icon="user" onChange={e => this.setState({ username: e.target.value })} iconPosition="left" placeholder="Username" />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Username"
+                  onChange={e => this.setState({ username: e.target.value })}
+                />
                 <Form.Input
                   fluid
                   icon="lock"
@@ -78,20 +87,26 @@ class Register extends Component {
                   type="password"
                   onChange={e => this.setState({ password: e.target.value })}
                 />
-                {/* <Link to={{ pathname: '/login' }}> */}
-                <Button color="red" fluid size="large" onClick={() => this.onSubmit()}>
-                                    Register
+
+                {/* <Link to={'/dashboard/' + this.state.userId}> */}
+                <Button color="purple" fluid size="large" onClick={() => this.onSubmit()}>
+                                    Login
                 </Button>
                 {/* </Link> */}
-                <Message>
-                    Have account?
-                  {' '}
-                  <Link to={{ pathname: '/register' }}>
-                        Log In
-                  </Link>
-                </Message>
               </Segment>
             </Form>
+            <Message>
+                New user?
+              {' '}
+              <Link to={{ pathname: '/register' }}>
+                  Sign Up
+              </Link>
+            </Message>
+            <Message>
+              <a href="#">
+                  Cancel
+              </a>
+            </Message>
           </Grid.Column>
         </Grid>
       </div>
@@ -99,4 +114,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default Login;

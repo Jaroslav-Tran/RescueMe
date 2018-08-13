@@ -125,7 +125,7 @@ module.exports = {
       });
     }
 
-    // takes component object and creates file glob matching selected components
+    // takes component object and creates file glob matching selected containers
     config.globs.components = (typeof config.components == 'object')
       ? (config.components.length > 1)
         ? '{' + config.components.join(',') + '}'

@@ -33,14 +33,14 @@ module.exports = {
     },
     output: {
       packaged     : 'dist/',
-      uncompressed : 'dist/components/',
-      compressed   : 'dist/components/',
+      uncompressed : 'dist/containers/',
+      compressed   : 'dist/containers/',
       themes       : 'dist/themes/'
     },
     clean : 'dist/'
   },
 
-  // components to include in package
+  // containers to include in package
   components: [
 
     // global

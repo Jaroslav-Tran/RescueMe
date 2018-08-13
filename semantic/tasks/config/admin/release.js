@@ -5,8 +5,8 @@
 // release settings
 module.exports = {
 
-  // path to components for repos
-  source     : './dist/components/',
+  // path to containers for repos
+  source     : './dist/containers/',
 
   // modified asset paths for component repos
   paths: {
@@ -58,7 +58,7 @@ module.exports = {
     'CSS'
   ],
 
-  // components that get separate repositories for bower/npm
+  // containers that get separate repositories for bower/npm
   components : [
     'accordion',
     'ad',

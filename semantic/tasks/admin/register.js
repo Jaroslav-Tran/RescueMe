@@ -15,7 +15,7 @@ var
   // config
   release = require('../config/admin/release'),
 
-  // register components and distributions
+  // register containers and distributions
   repos   = release.distributions.concat(release.components),
   total   = repos.length,
   index   = -1,
