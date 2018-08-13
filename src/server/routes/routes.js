@@ -13,5 +13,9 @@ router.get('/current_user', (req, res) => {
   res.send(req.user);
 });
 
-
+/*
+router.get('/contacts/create'), (req, res) => {
+  if (req.body.firstname && req.body.lastname)
+}
+*/
 module.exports = router;

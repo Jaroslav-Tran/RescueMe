@@ -3,9 +3,9 @@
 *******************************/
 
 /*
- This task update all SUI individual component repos with new versions of components
+ This task update all SUI individual component repos with new versions of containers
 
-  * Commits changes from create components to GitHub and Tags
+  * Commits changes from create containers to GitHub and Tags
 
 */
 
@@ -18,7 +18,7 @@ module.exports = function(callback) {
 
   runSequence(
     'update distributions', // commit less/css versions to github
-    'update components', // commit components to github
+    'update containers', // commit containers to github
     callback
   );
 

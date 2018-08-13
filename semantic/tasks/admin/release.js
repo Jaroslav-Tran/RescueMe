@@ -3,7 +3,7 @@
 *******************************/
 
 /*
- This task update all SUI individual component repos with new versions of components
+ This task update all SUI individual component repos with new versions of containers
 
   * Initializes repositories with current versions
   * Creates local files at ../distributions/ with each repo for release
@@ -21,8 +21,8 @@ module.exports = function(callback) {
     //'build', // build Semantic
     'init distributions', // sync with current github version
     'create distributions', // update each repo with changes from master repo
-    'init components', // sync with current github version
-    'create components', // update each repo
+    'init containers', // sync with current github version
+    'create containers', // update each repo
     callback
   );
 

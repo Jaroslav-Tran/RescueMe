@@ -4,7 +4,7 @@
 
 /*
 
- This task update all SUI individual component repos with new versions of components
+ This task update all SUI individual component repos with new versions of containers
 
   * Commits changes from create repo
   * Pushes changes to GitHub
@@ -174,7 +174,7 @@ module.exports = function(callback) {
       setConfig();
     }
     else {
-      console.error('Repository must be setup before running update components');
+      console.error('Repository must be setup before running update containers');
     }
 
   };

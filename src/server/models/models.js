@@ -9,15 +9,8 @@ const connect = process.env.MONGODB_URI;
 mongoose.connect(connect);
 
 const userSchema = mongoose.Schema({
-    username: {
-        type: String,
-        unique: true,
-    },
+    username: String,
     password: String,
-    documents: [{
-        type: mongoose.Schema.ObjectId,
-        ref: 'Document'
-    }]
 });
 
 const docSchema = mongoose.Schema({
