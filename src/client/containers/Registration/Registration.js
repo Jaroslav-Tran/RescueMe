@@ -20,7 +20,7 @@ class Register extends Component {
 
   onSubmit() {
     const _this = this;
-    fetch('/register', {
+    fetch('/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

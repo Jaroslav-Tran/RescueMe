@@ -67,11 +67,12 @@ passport.use(new LocalStrategy(
   },
 ));
 
-app.use('/', auth(passport));
-app.use('/', routes);
+app.use('/api', auth(passport));
+app.use('/api', routes);
 
 module.exports = app;
 
 app.use(express.static('dist'));
 app.get('/api/getUsername', (req, res) => res.send({ username: os.userInfo().username }));
-app.listen(8080, () => console.log('Listening on port 8080!'));
+
+app.listen(8080, (err) => console.log('Listening on port 8080!', err));

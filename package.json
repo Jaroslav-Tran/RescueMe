@@ -12,7 +12,7 @@
   },
   "author": "Sandeep Raveesh",
   "license": "ISC",
-  "proxy": "http://localhost:8080",
+  "proxy": "http://localhost:8080/api",
   "dependencies": {
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",

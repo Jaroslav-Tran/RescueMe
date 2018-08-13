@@ -21,7 +21,7 @@ class Login extends Component {
 
   onSubmit() {
     const _this = this;
-    fetch('/login', {
+    fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
