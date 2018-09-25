@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react';
 import '../Registration/Registration';
 
-const url = "http://localhost:8080";
+const url = 'http://localhost:8080';
 
 class Login extends Component {
   constructor(props) {
@@ -16,15 +16,17 @@ class Login extends Component {
       username: '',
       password: '',
       userId: '',
+      redirect: false
     };
   }
 
-  onSubmit() {
+  onSubmit = () => {
     const _this = this;
     fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       credentials: 'same-origin',
       body: JSON.stringify({
@@ -34,14 +36,15 @@ class Login extends Component {
     })
       .then((response) => {
         console.log(response);
+        this.setState({ redirect: true })
         return response.json();
       })
       .then((responseJson) => {
         console.log(responseJson);
         if (responseJson.success) {
-          _this.props.history.push(`/dashboard/${responseJson.user._id}`);
+          _this.props.history.push(`/dashboard/${responseJson.user._id}`)
         }
-        return responseJson;
+        return responseJson
       })
       .catch((err) => {
         throw err;
@@ -49,6 +52,11 @@ class Login extends Component {
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to={'/dashboard/' + this.state.userId}/>;
+    }
+
     return (
       <div className="login-form">
         {/*
@@ -90,7 +98,7 @@ class Login extends Component {
 
                 {/* <Link to={'/dashboard/' + this.state.userId}> */}
                 <Button color="purple" fluid size="large" onClick={() => this.onSubmit()}>
-                                    Login
+                    Login
                 </Button>
                 {/* </Link> */}
               </Segment>
