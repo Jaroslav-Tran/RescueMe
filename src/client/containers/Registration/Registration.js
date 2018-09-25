@@ -7,7 +7,7 @@ import {
 } from 'semantic-ui-react';
 import Login from '../Login/Login';
 
-const url = "http://localhost:8080";
+const url = 'http://localhost:8080';
 
 class Register extends Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class Register extends Component {
     this.state = {
       username: '',
       password: '',
+      redirect: false
     };
   }
 
@@ -32,6 +33,7 @@ class Register extends Component {
     })
       .then((response) => {
         console.log(response);
+        this.setState({ redirect: true });
         return response.json();
       })
       .then((responseJson) => {
@@ -48,6 +50,11 @@ class Register extends Component {
 
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div className="register-form">
         {/*
@@ -88,7 +95,7 @@ class Register extends Component {
                 <Message>
                     Have account?
                   {' '}
-                  <Link to={{ pathname: '/register' }}>
+                  <Link to={{ pathname: '/' }}>
                         Log In
                   </Link>
                 </Message>
